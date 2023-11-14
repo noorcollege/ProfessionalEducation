@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+			display:none;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .user-message {
+            text-align: right;
+            color: #007bff;
+        }
+
+        .bot-message {
+            text-align: left;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+.chat-div{
+	width:7%;
+	height:8vh;
+	background-color:#CCC;
+	color:#000;
+	border-radius:5px;
+	}
+	
+.search-div{
+	width:3.5%;
+	height:4.5vh;
+	background-color:#CCC;
+	border-radius:50%;
+	}
+.sr-icon{
+	font-size:15pt;
+	margin-left:1%;
+	margin-top:.9vh;
+	position:absolute;
+	}
+.src-bar{
+	width:71%;
+	height:5vh;
+	background-color:#CCC;
+	display:none;
+	animation:animate linear 3s;
+	}
+.src-bar input[type='text']{
+	width:96%;
+	height:2vh;
+	margin-left:.5%;
+	margin-top:.3vh; 
+	}		
+@keyframes animate{
+	from{margin-top:-5vh;}
+	to{margin-top:0;}
+	}					
+    </style>
+</head>
+<body>
+    <div class="chat-container" id="chat-div">
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">Hello! How can I assist you today?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+
+        function appendUserMessage(message) {
+            const userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.textContent = message;
+            chatBox.appendChild(userMessage);
+            userInput.value = '';
+        }
+
+        function appendBotMessage(message) {
+            const botMessage = document.createElement('div');
+            botMessage.className = 'bot-message';
+            botMessage.textContent = message;
+            chatBox.appendChild(botMessage);
+        }
+
+        function handleUserInput() {
+            const userText = userInput.value;
+            appendUserMessage(userText);
+
+            // Simulate a bot response (you can replace this with actual chatbot logic)
+            const botResponse = generateBotResponse(userText);
+            appendBotMessage(botResponse);
+        }
+
+        function generateBotResponse(userText) {
+            // Replace this with your chatbot logic
+            if(userText == "Assalam o Alaikum"){
+                return "Walaikum Assalam";
+            }
+
+            else if (userText == "Center Timing?" || userText == "Timing?"){
+                return "Center Timing is 9am to 9pm & days are Monday to Saturday";
+            }
+
+            else if (userText == "Course Details?"){
+                return "We have range of course like CIT,PDIT,DIT,GRAPHIC DESIGNING,DIGITAL MARKETING,AMAZON & COMPUTER ACCOUNTING";
+            }
+
+            else if(userText== "Fee Structure?" || userText == "Fees?"){
+                return "CIT = 5000/Month, PDIT = 6000/Month, DIT = 7000/Month";
+            }
+			
+			else{
+				return "I'm just a robot";
+        }
+		
+		}
+        userInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                handleUserInput();
+            }
+        });
+    </script>
+<div class="chat-div" id="chat-icon">
+<i class="bi bi-chat-dots"></i>
+</div>
+<script>
+var show = document.getElementById('chat-div');
+var div1 = document.getElementById('chat-icon');
+ div1.addEventListener('click',function(){
+	 show.style.display = "block";
+	 });
+</script>
+
+<div class="search-div" id="search-div"><i class="bi bi-search sr-icon"></i></div>
+<div class="src-bar">
+<input type="text"  id="src-box" placeholder="Search here..." class="src-box">
+</div>
+<script>
+var sdiv = document.getElementById('search-div');
+var sbar = document.getElementById('src-box');
+sdiv.addEventListener('click', function(){
+	sbar.style.display = 'block';
+	});
+</script>    
+</body>
+</html>
